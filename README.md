@@ -1,6 +1,6 @@
-# myweb
+# Niemann 75
 
-> A Vue.js project
+> Windows 95 emulation done with vue.js
 
 ## Build Setup
 
