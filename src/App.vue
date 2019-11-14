@@ -37,5 +37,6 @@ export default {
     flex-direction: column;
     height: 100%;
     background-color: #53a5a5;
+    cursor: default;
   }
 </style>

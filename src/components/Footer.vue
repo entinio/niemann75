@@ -1,6 +1,8 @@
 <template>
   <footer>
-    {{ copyright }}
+    <div><button class="start">&nbsp;</button></div>
+    <div id="taskbar" />
+    <div id="clock" />
   </footer>
 </template>
 
@@ -8,7 +10,7 @@
   export default {
     data() {
       return {
-        copyright: 'Copyright 2019'
+        
       }
     }
   }
@@ -16,9 +18,34 @@
 
 <style scoped>
   footer {
-    background: #222;
-    height: 36px;
-    padding: 0;
+    display: flex;
+    align-items: center;
+    background: #c0c7c8;
+    height: 26px;
+    padding: 2px;
     margin: 0;
+  }
+
+  .start {
+    background: url(../assets/demarrer.png) no-repeat;
+    width: 78px;
+    height: 22px;
+    border: none;
+  }
+
+  .start:active {
+    background: url(../assets/demarrer_on.png) no-repeat;
+  }
+
+  #taskbar {
+    flex-grow: 1;
+    background-color: white;
+  }
+
+  #clock {
+    width: 66px;
+    height: 22px;
+    padding: 0;
+    background-color: yellow;
   }
 </style>
