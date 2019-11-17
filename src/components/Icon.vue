@@ -8,26 +8,26 @@
 <script>
   let x, y, dx, dy;
 
-  function startdrag(e) {
+  function drag_start(e) {
     dx = e.x - e.srcElement.offsetLeft;
     dy = e.y - e.srcElement.offsetTop;
     e.dataTransfer.setData('text/html', null); 
     e.target.style.opacity = .5;
   }
 
-  function overdrag(e) {
+  function drag_over(e) {
     x = e.x;
     y = e.y;
     if (e.preventDefault) e.preventDefault();
   }
 
-  function enddrag(e) {
+  function drag_end(e) {
     e.target.style.opacity = "";
     e.srcElement.style.top  = eval(y - dy) + "px";
     e.srcElement.style.left = eval(x - dx) + "px";
   }
 
-  function dropdrag(e) {
+  function drag_drop(e) {
     if (e.stopPropagation) e.stopPropagation();
 
     return false;
@@ -55,10 +55,10 @@
       }
     },
     mounted() {
-      this.$el.addEventListener('dragstart', startdrag, false);
-      this.$el.parentElement.addEventListener('dragover', overdrag, false);
-      this.$el.addEventListener('drop', dropdrag, false);
-      this.$el.addEventListener('dragend', enddrag, false);
+      this.$el.addEventListener('dragstart', drag_start, false);
+      this.$el.parentElement.addEventListener('dragover', drag_over, false);
+      this.$el.addEventListener('drop', drag_drop, false);
+      this.$el.addEventListener('dragend', drag_end, false);
     }
   }
 </script>
