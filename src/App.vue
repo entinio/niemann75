@@ -6,11 +6,11 @@
 </template>
 
 <script>
-// Imports
-import Window from './components/Window.vue';
-import Footer from './components/Footer.vue';
+  // Imports
+  import Window from './components/Window.vue';
+  import Footer from './components/Footer.vue';
 
-export default {
+  export default {
     components: {
         'app-window': Window,
         'app-footer': Footer
@@ -19,7 +19,7 @@ export default {
         return {
         }
     }
-}
+  }
 </script>
 
 <style>
@@ -29,7 +29,7 @@ export default {
 
   body {
     margin: 0;
-    font-family: 'Nunito SemiBold';
+    font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   #app {

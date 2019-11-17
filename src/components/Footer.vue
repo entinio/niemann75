@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div><button class="start">&nbsp;</button></div>
+    <div id="demarrer"><button class="start"></button></div>
     <div id="taskbar" />
     <div id="clock" />
   </footer>
@@ -24,6 +24,11 @@
     height: 26px;
     padding: 2px;
     margin: 0;
+    z-index: 100;
+  }
+
+  #demarrer {
+    display: flex;
   }
 
   .start {
