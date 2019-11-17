@@ -1,17 +1,17 @@
 <template>
   <div class="window">
-    <icon title="Poste de travail" icon_name="poste.png"></icon>
-    <icon></icon>
+    <app-icon title="Poste de travail" icon_name="poste.png"></app-icon>
+    <app-icon></app-icon>
   </div>
 </template>
 
 <script>
   // Imports
-  import Icon from './Icon.vue';
+  import AppIcon from './AppIcon.vue';
 
   export default {
     components: {
-      'icon': Icon
+      'app-icon': AppIcon
     },
     data() {
       return {

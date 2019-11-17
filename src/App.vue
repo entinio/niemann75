@@ -7,13 +7,13 @@
 
 <script>
   // Imports
-  import Window from './components/Window.vue';
-  import Footer from './components/Footer.vue';
+  import AppWindow from './components/AppWindow.vue';
+  import AppFooter from './components/AppFooter.vue';
 
   export default {
     components: {
-        'app-window': Window,
-        'app-footer': Footer
+        'app-window': AppWindow,
+        'app-footer': AppFooter
     },
     data () {
         return {
