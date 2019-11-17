@@ -1,8 +1,8 @@
 <template>
   <footer>
-    <div id="demarrer"><button class="start"></button></div>
-    <div id="taskbar" />
-    <div id="clock" />
+    <div class="footer__demarrer"><button class="footer__demarrer__start"></button></div>
+    <div class="footer__taskbar" />
+    <div class="footer__clock" />
   </footer>
 </template>
 
@@ -27,27 +27,27 @@
     z-index: 100;
   }
 
-  #demarrer {
+  .footer__demarrer {
     display: flex;
   }
 
-  .start {
-    background: url(../assets/demarrer.png) no-repeat;
+  .footer__demarrer__start {
+    background: url(/public/demarrer.png) no-repeat;
     width: 78px;
     height: 22px;
     border: none;
   }
 
-  .start:active {
-    background: url(../assets/demarrer_on.png) no-repeat;
+  .footer__demarrer__start:active {
+    background: url(/public/demarrer_on.png) no-repeat;
   }
 
-  #taskbar {
+  .footer__taskbar {
     flex-grow: 1;
     background-color: white;
   }
 
-  #clock {
+  .footer__clock {
     width: 66px;
     height: 22px;
     padding: 0;

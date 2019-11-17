@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="add" class="app">
     <app-window></app-window>
     <app-footer></app-footer>
   </div>
@@ -32,7 +32,7 @@
     font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  #app {
+  .app {
     display: flex;
     flex-direction: column;
     height: 100%;

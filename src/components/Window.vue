@@ -1,5 +1,5 @@
 <template>
-  <div id="window">
+  <div class="window">
     <icon title="Poste de travail" icon_name="poste.png"></icon>
     <icon></icon>
   </div>
@@ -22,7 +22,7 @@
 </script>
 
 <style scoped>
-  #window {
+  .window {
     flex-grow: 1;
     padding: 4px 2px;
   }

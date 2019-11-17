@@ -1,38 +1,12 @@
 <template>
-  <div draggable="true" class="icon">
+  <div draggable="true" class="icon" @dragstart="drag_start" @dragend="drag_end" @drop="drag_drop"
+    v-bind:style="{ top: offsetTop + 'px', left: offsetLeft + 'px' }">
     <div><img v-bind:src="get_icon()" draggable="false" /></div>
     <div>{{ title }}</div>
   </div>
 </template>
 
 <script>
-  let x, y, dx, dy;
-
-  function drag_start(e) {
-    dx = e.x - e.srcElement.offsetLeft;
-    dy = e.y - e.srcElement.offsetTop;
-    e.dataTransfer.setData('text/html', null); 
-    e.target.style.opacity = .5;
-  }
-
-  function drag_over(e) {
-    x = e.x;
-    y = e.y;
-    if (e.preventDefault) e.preventDefault();
-  }
-
-  function drag_end(e) {
-    e.target.style.opacity = "";
-    e.srcElement.style.top  = eval(y - dy) + "px";
-    e.srcElement.style.left = eval(x - dx) + "px";
-  }
-
-  function drag_drop(e) {
-    if (e.stopPropagation) e.stopPropagation();
-
-    return false;
-  }
-
   export default {
     props: {
       title: {
@@ -46,19 +20,48 @@
     },
     data() {
       return {
-
+        offsetLeft: 2,
+        offsetTop: 4,
+        coord: {
+          x: 0,
+          y: 0
+        },
+        delta_coord: {
+          x: 0,
+          y: 0
+        }
       }
     },
     methods: {
       get_icon: function() {
-        return require("../assets/" + this.icon_name);
+        return "/public/icons/" + this.icon_name;
+      },
+
+      drag_start: function(event) {
+        this.delta_coord.x = event.x - this.offsetLeft;
+        this.delta_coord.y = event.y - this.offsetTop;
+        event.dataTransfer.setData('text/html', null); 
+        event.target.style.opacity = .5;
+      },
+
+      drag_over: function(event) {
+        this.coord.x = event.x;
+        this.coord.y = event.y;
+        if (event.preventDefault) event.preventDefault();
+      },
+
+      drag_end: function(event) {
+        event.target.style.opacity = "";
+        this.offsetTop  = this.coord.y - this.delta_coord.y;
+        this.offsetLeft = this.coord.x - this.delta_coord.x;
+      },
+
+      drag_drop: function(event) {
+        if (event.stopPropagation) e.stopPropagation();
       }
     },
     mounted() {
-      this.$el.addEventListener('dragstart', drag_start, false);
-      this.$el.parentElement.addEventListener('dragover', drag_over, false);
-      this.$el.addEventListener('drop', drag_drop, false);
-      this.$el.addEventListener('dragend', drag_end, false);
+      this.$el.parentElement.addEventListener('dragover', this.drag_over, false);
     }
   }
 </script>
@@ -66,8 +69,6 @@
 <style scoped>
   .icon {
     position: absolute;
-    top: 4px;
-    left: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
