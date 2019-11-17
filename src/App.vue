@@ -1,7 +1,10 @@
 <template>
-  <div id="add" class="app">
-    <app-window></app-window>
-    <app-footer></app-footer>
+  <div
+    id="add"
+    class="app"
+  >
+    <appWindow />
+    <appFooter />
   </div>
 </template>
 
@@ -12,8 +15,8 @@
 
   export default {
     components: {
-        'app-window': AppWindow,
-        'app-footer': AppFooter
+        'appWindow': AppWindow,
+        'appFooter': AppFooter
     },
     data () {
         return {

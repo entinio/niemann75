@@ -1,6 +1,8 @@
 <template>
   <footer>
-    <div class="footer__demarrer"><button class="footer__demarrer__start"></button></div>
+    <div class="footer__demarrer">
+      <button class="footer__demarrer__start" />
+    </div>
     <div class="footer__taskbar" />
     <div class="footer__clock" />
   </footer>

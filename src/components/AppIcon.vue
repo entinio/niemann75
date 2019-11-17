@@ -1,25 +1,48 @@
 <template>
-  <div draggable="true" class="icon" @dragstart="drag_start" @dragend="drag_end" @drop="drag_drop"
-    v-bind:style="{ top: offsetTop + 'px', left: offsetLeft + 'px' }">
-    <div><img v-bind:src="get_icon()" draggable="false" /></div>
+  <div
+    draggable  = "true"
+    class      = "icon"
+    @dragstart = "dragStart"
+    @dragend   = "dragEnd"
+    @drop.stop
+    :style     = "iconStyles"
+  >
+    <div>
+      <img
+        v-bind:src = "iconSrc"
+        draggable  = "false"
+      />
+    </div>
     <div>{{ title }}</div>
   </div>
 </template>
 
 <script>
   export default {
+    name: 'AppIcon',
     props: {
       title: {
         type: String,
-        default: "Unknown"
+        default: 'Unknown'
       },
-      icon_name: {
+      iconName: {
         type: String,
-        default: "default.png"
+        default: 'default.png',
+        validator: function (value) {
+          return (
+            value.endsWith('.png')  ||
+            value.endsWith('.svg')  ||
+            value.endsWith('.jpg')  ||
+            value.endsWith('.jpeg') ||
+            value.endsWith('.webp') ||
+            value.endsWith('.gif')
+          );
+        }
       }
     },
-    data() {
+    data: function() {
       return {
+        opacity: 1,
         offsetLeft: 2,
         offsetTop: 4,
         coord: {
@@ -33,35 +56,39 @@
       }
     },
     methods: {
-      get_icon: function() {
-        return "/public/icons/" + this.icon_name;
+      dragStart: function($event) {
+        this.delta_coord.x = $event.x - this.offsetLeft;
+        this.delta_coord.y = $event.y - this.offsetTop;
+        this.opacity = .5;
+        $event.dataTransfer.setData('text/html', null); 
       },
 
-      drag_start: function(event) {
-        this.delta_coord.x = event.x - this.offsetLeft;
-        this.delta_coord.y = event.y - this.offsetTop;
-        event.dataTransfer.setData('text/html', null); 
-        event.target.style.opacity = .5;
-      },
-
-      drag_over: function(event) {
+      dragOver: function($event) {
         this.coord.x = event.x;
         this.coord.y = event.y;
-        if (event.preventDefault) event.preventDefault();
+        if ($event.preventDefault) $event.preventDefault();
       },
 
-      drag_end: function(event) {
-        event.target.style.opacity = "";
+      dragEnd: function() {
+        this.opacity = 1;
         this.offsetTop  = this.coord.y - this.delta_coord.y;
         this.offsetLeft = this.coord.x - this.delta_coord.x;
+      }
+    },
+    computed: {
+      iconStyles: function () {
+        return {
+          top:  this.offsetTop  + 'px',
+          left: this.offsetLeft + 'px',
+          opacity: this.opacity
+        };
       },
-
-      drag_drop: function(event) {
-        if (event.stopPropagation) e.stopPropagation();
+      iconSrc: function () {
+        return '/public/icons/' + this.iconName;
       }
     },
     mounted() {
-      this.$el.parentElement.addEventListener('dragover', this.drag_over, false);
+      this.$el.parentElement.addEventListener('dragover', this.dragOver, false);
     }
   }
 </script>

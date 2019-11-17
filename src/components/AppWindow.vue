@@ -1,7 +1,10 @@
 <template>
   <div class="window">
-    <app-icon title="Poste de travail" icon_name="poste.png"></app-icon>
-    <app-icon></app-icon>
+    <appIcon
+      title="Poste de travail"
+      iconName="poste.png"
+    />
+    <appIcon />
   </div>
 </template>
 
@@ -11,7 +14,7 @@
 
   export default {
     components: {
-      'app-icon': AppIcon
+      'appIcon': AppIcon
     },
     data() {
       return {
