@@ -16,7 +16,7 @@
     components: {
       'appIcon': AppIcon
     },
-    data() {
+    data: function() {
       return {
 
       }
